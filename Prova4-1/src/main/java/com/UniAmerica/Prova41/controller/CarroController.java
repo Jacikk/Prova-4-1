@@ -90,18 +90,17 @@ public class CarroController {
         try{
 
             Marca marca = marcaService.findByName(nomeMarca);
-            System.out.println("nome da marca " + marca.getName());
 
-            List<Modelo> modelos= modeloService.findByMarca(marca);
-
-            System.out.println("lista de modelos " + modelos);
+            List<Modelo> modelos = modeloService.findByMarca(marca);
 
             if(!modelos.isEmpty()){
                 
-                List<Carro> carros = Collections.emptyList();
+                List<Carro> carros = new java.util.ArrayList<>(Collections.emptyList());
 
                 for (Modelo modelo: modelos) {
-                    carros = carroService.findByModelo(modelo);
+
+                    carros.addAll(carroService.findByModelo(modelo));
+
                 }
                 if(!carros.isEmpty()) return new ResponseEntity<>(carros, null, HttpStatus.OK);
                 else return new ResponseEntity<>(carros, null, HttpStatus.NO_CONTENT);
