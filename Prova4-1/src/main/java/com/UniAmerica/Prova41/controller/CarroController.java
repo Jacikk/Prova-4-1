@@ -112,7 +112,7 @@ public class CarroController {
         }
     }
 
-    @GetMapping("/modelo/{nomeModelo")
+    @GetMapping("/modelo/{nomeModelo}")
     public ResponseEntity<?> carroPorModelo(@PathVariable String nomeModelo) throws Exception{
         try{
             Modelo modelo = modeloService.findByName(nomeModelo);
